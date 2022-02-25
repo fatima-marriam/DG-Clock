@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock🕥 </title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body onload="ini()">
+    <div class="clock">
+        <div class="daydate">
+            <span id="dy">Thursday,</span>
+            <span id="dat">30</span>
+            <span id="mn">August,</span>
+            <span id="ye">202w1</span>
+        </div>
+        <div class="ck">
+
+            <div class="hour">
+                <div id="hr"></div>
+            </div>
+            <div class="min">
+                <div id="mnn"></div>
+            </div>
+            <div class="sec">
+                <div id="sec"></div>
+            </div>
+
+        </div>
+        <div class="time">
+            <span class="hrr" id="hrr">06:</span>
+            <span class="miin" id="miin">06:</span>
+            <span class="seec" id="seec">06:</span>
+            <span class="per" id="pe">AM</span>
+
+        </div>
+    </div>
+
+
+    <script>
+        function myfn(){
+
+        var mnthh = ["January,", "February,", "March,", "April,", "May,", "June,", "July,", "August,", "September,", "November,", "December"]
+        var week = ["Sunday", "Monday, ", "Tuesday,", "Wednesday,", "Thrusday", "Friday", "Saturday"]
+        var neww = new Date();
+        var d = week[neww.getDay()];
+        var t = neww.getDate();
+        var m = mnthh[neww.getMonth()];
+        var y = neww.getFullYear();
+        var zhr = neww.getHours();
+        var zmin = neww.getMinutes();
+        var zsec = neww.getSeconds();
+        var twenty24 = neww.getHours();
+        var pe = "PM";
+        if (zhr > 12) {
+            zhr = zhr - 12;
+        }
+        if (zhr < 10) {
+            zhr = "0" + zhr;
+        }
+
+        if (zmin < 10) {
+            zmin = "0" + zmin
+        }
+        if (zsec < 10) {
+            zsec = "0" + zsec
+        }
+
+        document.getElementById("dy").innerHTML = d;
+        document.getElementById("dat").innerHTML = t;
+        document.getElementById("mn").innerHTML = m;
+        document.getElementById("ye").innerHTML = y;
+        document.getElementById("hrr").innerHTML = zhr + ":";
+        document.getElementById("miin").innerHTML = zmin + ":";
+        document.getElementById("seec").innerHTML = zsec + " ";
+        var pe = "PM"
+            if (twenty24 < 12) {
+                pe = "AM";
+            }
+            document.getElementById("pe").innerHTML = pe;
+
+        }
+        // ===========================================
+
+        const deg = 6;
+        const hr = document.querySelector("#hr");
+        const mn = document.querySelector("#mnn");
+        const sc = document.querySelector("#sec");
+
+        setInterval(() => {
+            let dat = new Date();
+            let hh = dat.getHours() * 30;
+            let mm = dat.getMinutes() * deg;
+            let ss = dat.getSeconds() * deg;
+
+            hr.style.transform = `rotatez(${(hh) + (mm / 12)}deg)`;
+            mn.style.transform = `rotatez(${mm}deg)`;
+            sc.style.transform = `rotatez(${ss}deg)`;
+        });
+   
+    function ini() {
+            myfn();
+            setInterval("myfn()", 1000);
+        }
+    </script>
+</body>
+
+</html>
